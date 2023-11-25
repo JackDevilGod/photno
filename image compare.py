@@ -20,7 +20,7 @@ def mse(first, second):
     return meanse
 
 
-amount_picutes = int(input())
+amount_picutes = int(input("how many images are there"))
 count = 1
 offset = 1
 # 50% match is 124.5
