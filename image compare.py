@@ -25,6 +25,7 @@ count = 1
 offset = 1
 # 50% match is 124.5
 while count < amount_picutes:
+    print(mse(count, count + offset))
     if mse(count, count + offset) < 25:
         os.remove('1-' + "".join(["0" for _ in range(5 - len(str(count + offset)))]) + str(count + offset) + '.png')
         offset += 1
@@ -32,5 +33,5 @@ while count < amount_picutes:
         count = count + offset
         offset = 1
 
-    if count + offset == amount_picutes:
+    if count + offset >= amount_picutes:
         count = amount_picutes
