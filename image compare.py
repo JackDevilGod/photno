@@ -1,10 +1,11 @@
 # import required libraries
 import cv2
 import numpy as np
+folder = str(input())
 
 # load the input images
-img1 = cv2.imread(r'C:\Users\jackj\PycharmProjects\photno\panda.png')
-img2 = cv2.imread(r'C:\Users\jackj\PycharmProjects\photno\panda1.png')
+img1 = cv2.imread(folder)
+img2 = cv2.imread(folder)
 
 # convert the images to grayscale
 img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
@@ -12,14 +13,14 @@ img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
 
 # define the function to compute MSE between two images
-def mse(img1, img2):
+def mse(img_1, img_2):
     h, w = img1.shape
-    diff = cv2.subtract(img1, img2)
+    diff = cv2.subtract(img_1, img_2)
     err = np.sum(diff**2)
-    mse = err/(float(h*w))
-    return mse
+    meanse = err/(float(h*w))
+    return meanse
+
 
 # 50% match is 124.5
-
 error = mse(img1, img2)
 print(error)
