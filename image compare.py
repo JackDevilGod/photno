@@ -6,8 +6,8 @@ import os
 
 def mse(first, second):
     # load the input images
-    img1 = cv2.imread('1-' + "".join(["0" for _ in range(4 - first)]) + str(first) + '.png')
-    img2 = cv2.imread('1-' + "".join(["0" for _ in range(4 - second)]) + str(second) + '.png')
+    img1 = cv2.imread('1-' + "".join(["0" for _ in range(5 - len(str(first)))]) + str(first) + '.png')
+    img2 = cv2.imread('1-' + "".join(["0" for _ in range(5 - len(str(second)))]) + str(second) + '.png')
 
     # convert the images to grayscale
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
@@ -25,8 +25,8 @@ count = 1
 offset = 1
 # 50% match is 124.5
 while count < amount_picutes:
-    if mse(count, count + offset) < 124.5:
-        os.remove('1-' + "".join(["0" for _ in range(4 - count)]) + str(count) + '.png')
+    if mse(count, count + offset) < 25:
+        os.remove('1-' + "".join(["0" for _ in range(5 - len(str(count + offset)))]) + str(count + offset) + '.png')
         offset += 1
     else:
         count = count + offset
