@@ -1,16 +1,15 @@
 # import required libraries
 import cv2
 import numpy as np
-folder = str(input())
 
+n = 0
 # load the input images
-img1 = cv2.imread(folder)
-img2 = cv2.imread(folder)
+img1 = cv2.imread('1-' + "".join(["0" for _ in range(4-n)]) + str(n) + '.png')
+img2 = cv2.imread('1-' + "".join(["0" for _ in range(4-n)]) + str(n) + '.png')
 
 # convert the images to grayscale
 img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
 img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-
 
 # define the function to compute MSE between two images
 def mse(img_1, img_2):
