@@ -17,12 +17,9 @@ def mse(img1, img2):
     diff = cv2.subtract(img1, img2)
     err = np.sum(diff**2)
     mse = err/(float(h*w))
-    return mse, diff
+    return mse
 
+# 50% match is 124.5
 
-error, diff = mse(img1, img2)
-print("Image matching Error between the two images:", error)
-
-cv2.imshow("difference", diff)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+error = mse(img1, img2)
+print(error)
