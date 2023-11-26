@@ -12,20 +12,23 @@ similarity_index, _ = metrics.structural_similarity(img1, img2, full=True)
 print(similarity_index)"""
 
 import cv2
-import matplotlib.pyplot as plt
 
-# Load two images for comparison
-image1 = cv2.imread('1-' + "".join(["0" for _ in range(5 - len(str(1)))]) + str(1) + '.png')
-image2 = cv2.imread('1-' + "".join(["0" for _ in range(5 - len(str(11)))]) + str(11) + '.png')
 
-# Calculate histograms for both images
-hist1 = cv2.calcHist([image1], [0, 1, 2], None, [256, 256, 256], [0, 256, 0, 256, 0, 256])
-hist2 = cv2.calcHist([image2], [0, 1, 2], None, [256, 256, 256], [0, 256, 0, 256, 0, 256])
+def histogram(first, second):
+    # Load two images for comparison
+    image1 = cv2.imread('1-' + "".join(["0" for _ in range(5 - len(str(first)))]) + str(first) + '.png')
+    image2 = cv2.imread('1-' + "".join(["0" for _ in range(5 - len(str(second)))]) + str(second) + '.png')
 
-# Normalize histograms (optional)
-hist1 = cv2.normalize(hist1, hist1)
-hist2 = cv2.normalize(hist2, hist2)
+    # Calculate histograms for both images
+    hist1 = cv2.calcHist([image1], [0, 1, 2], None, [256, 256, 256], [0, 256, 0, 256, 0, 256])
+    hist2 = cv2.calcHist([image2], [0, 1, 2], None, [256, 256, 256], [0, 256, 0, 256, 0, 256])
 
-# Compare histograms using Chi-Square distance
-similarity = cv2.compareHist(hist1, hist2, cv2.HISTCMP_CHISQR)
-print(similarity)
+    # Normalize histograms (optional)
+    hist1 = cv2.normalize(hist1, hist1)
+    hist2 = cv2.normalize(hist2, hist2)
+
+    # Compare histograms using Chi-Square distance
+    return cv2.compareHist(hist1, hist2, cv2.HISTCMP_CHISQR)
+
+
+print(histogram(1, 3))
