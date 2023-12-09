@@ -1,6 +1,5 @@
 # import required libraries
-import cv2
-import numpy as np
+
 import os
 from functions import *
 

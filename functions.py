@@ -1,3 +1,7 @@
+import cv2
+import numpy as np
+
+
 def mse(first, second):
     # load the input images
     img1 = cv2.imread('1-' + "".join(["0" for _ in range(5 - len(str(first)))]) + str(first) + '.png')
