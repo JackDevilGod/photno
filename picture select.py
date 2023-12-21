@@ -1,6 +1,6 @@
 # import required libraries
 import os
-from functions import *
+from compare_functions import *
 
 amount_picture = int(input("how many images are there"))
 count = 1
