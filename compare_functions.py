@@ -2,9 +2,14 @@ import cv2
 import numpy as np
 
 
-def mse(img1, img2, folder):
-    # load the input images
-
+def mse(img1, img2):
+    """
+    an image comparing algorithm i copied from the internet
+    :param img1:
+    :param img2:
+    :param folder:
+    :return:
+    """
     # convert the images to grayscale
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
@@ -16,7 +21,13 @@ def mse(img1, img2, folder):
     return meanse
 
 
-def histogram(img1, img2, folder):
+def histogram(img1, img2):
+    """
+    a histogram image compare algorithm i copied from the internet
+    :param img1:
+    :param img2:
+    :return:
+    """
     # Load two images for comparison
 
     # Calculate histograms for both images

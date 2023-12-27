@@ -10,12 +10,12 @@ def main():
     count = 1
     offset = 1
     # 50% match is 124.5 histogram
-    while count < len(lst_file_names):
-        img1 = cv2.imread(directory + lst_file_names[count])
-        img2 = cv2.imread('1-' + "".join(["0" for _ in range(5 - len(str(second)))]) + str(second) + '.png')
-        if (mse(lst_file_names[count], lst_file_names[count + offset], directory) < 25 and
-                histogram(lst_file_names[count], lst_file_names[count + offset], directory) < 50):
-            os.remove(lst_file_names[count + offset])
+    while count + offset < len(lst_file_names):
+        img1 = cv2.imread(os.path.join(directory, lst_file_names[count]))
+        img2 = cv2.imread(os.path.join(directory, lst_file_names[count + offset]))
+        if (mse(img1, img2) < 25 and
+                histogram(img1, img2) < 50):
+            os.remove(os.path.join(directory, lst_file_names[count + offset]))
             offset += 1
         else:
             count = count + offset
