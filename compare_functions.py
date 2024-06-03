@@ -4,10 +4,9 @@ import numpy as np
 
 def mse(img1, img2):
     """
-    an image comparing algorithm i copied from the internet
+    an image comparing algorithm I copied from the internet
     :param img1:
     :param img2:
-    :param folder:
     :return:
     """
     # convert the images to grayscale
@@ -23,7 +22,7 @@ def mse(img1, img2):
 
 def histogram(img1, img2):
     """
-    a histogram image compare algorithm i copied from the internet
+    a histogram image compare algorithm which compared the color distrubution
     :param img1:
     :param img2:
     :return:
@@ -40,3 +39,31 @@ def histogram(img1, img2):
 
     # Compare histograms using Chi-Square distance
     return cv2.compareHist(hist1, hist2, cv2.HISTCMP_CHISQR)
+
+
+def detect_and_match_features(img1, img2):
+    # Convert images to grayscale
+    gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+    gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+
+    # Initialize ORB detector
+    orb = cv2.ORB.create()
+
+    # Find the keypoints and descriptors with ORB
+    keypoints1, descriptors1 = orb.detectAndCompute(gray1, None)
+    keypoints2, descriptors2 = orb.detectAndCompute(gray2, None)
+
+    # Create a BFMatcher (Brute-Force Matcher)
+    bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+
+    # Match descriptors
+    matches = bf.match(descriptors1, descriptors2)
+
+    # Sort them in ascending order of distance
+    matches = sorted(matches, key=lambda x: x.distance)
+
+    # Normalize the similarity score between 0 and 100
+    total_keypoints = min(len(keypoints1), len(keypoints2))
+    similarity_score = (len(matches) / total_keypoints) * 100
+
+    return similarity_score

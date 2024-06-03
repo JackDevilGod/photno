@@ -13,8 +13,9 @@ def main():
     while count + offset < len(lst_file_names):
         img1 = cv2.imread(os.path.join(directory, lst_file_names[count]))
         img2 = cv2.imread(os.path.join(directory, lst_file_names[count + offset]))
-        if (mse(img1, img2) < 50 and
-                histogram(img1, img2) < 50):
+        temp = detect_and_match_features(img1, img2)
+
+        if temp > 50:
             os.remove(os.path.join(directory, lst_file_names[count + offset]))
             offset += 1
         else:
